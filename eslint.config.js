@@ -12,6 +12,11 @@ export default [
   pluginReact.configs.flat.recommended,
   prettierConfig,
   {
-    plugins: prettierPlugin,
+    plugins: {
+      prettier: prettierPlugin,
+    },
+    rules: {
+      'react/prop-types': 0,
+    },
   },
 ];
