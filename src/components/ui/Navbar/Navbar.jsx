@@ -1,5 +1,4 @@
 import MenuIcon from '@mui/icons-material/Menu';
-import MovieIcon from '@mui/icons-material/Movie';
 import {
   AppBar,
   Box,
@@ -34,6 +33,7 @@ export const Navbar = () => {
   const handleDrawerToggle = () => {
     setOpen((prevState) => !prevState);
   };
+
   const trigger = useScrollTrigger({
     target: window,
   });
