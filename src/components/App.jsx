@@ -14,7 +14,14 @@ import { Navbar } from './ui/Navbar/Navbar';
 function App() {
   return (
     <BrowserRouter>
-      <Container maxWidth="lg">
+      <Container
+        maxWidth="lg"
+        sx={{
+          display: 'flex',
+          minHeight: '100vh',
+          flexDirection: 'column',
+        }}
+      >
         <Box sx={{ p: 4 }} />
         <Navbar />
         <Routes>
