@@ -1,6 +1,7 @@
+import { ArrowBack } from '@mui/icons-material';
 import { Button, Stack, Typography } from '@mui/material';
-import React, { useState } from 'react';
-import { useLocation } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router';
 
 import { TOP_LISTS } from '../../../constanst';
 import { useGetFilmsTopQuery } from '../../../services/kinopoiskApi';
@@ -8,14 +9,19 @@ import MoviesList from '../../ui/MoviesList/MoviesList';
 
 const MoviesListTop = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
 
   const movieType = TOP_LISTS.find((item) => item.url === location.pathname);
 
-  const { data, error, isLoading } = useGetFilmsTopQuery({
+  const { data, error, isLoading, isSuccess } = useGetFilmsTopQuery({
     type: movieType.value,
     page,
   });
+
+  useEffect(() => {
+    setPage(1);
+  }, [location]);
 
   if (error) return <p>Something went wrong</p>;
 
@@ -23,9 +29,16 @@ const MoviesListTop = () => {
 
   return (
     <>
-      <Stack flexDirection="row">
-        <Button>Назад</Button>
-        <Typography>{movieType.title}</Typography>
+      <Stack
+        flexDirection="row"
+        justifyContent="space-between"
+        alignItems={'center'}
+        sx={{ marginBlock: '10px' }}
+      >
+        <Button startIcon={<ArrowBack />} onClick={() => navigate(-1)}>
+          Назад
+        </Button>
+        <Typography variant="h6">{movieType.title}</Typography>
       </Stack>
       <MoviesList
         movies={data.items}

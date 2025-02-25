@@ -1,5 +1,6 @@
 .img {
   width: 100%;
+  aspect-ratio: 215/322;
   transition: transform 0.5s;
 }
 
@@ -9,4 +10,8 @@
 
 .card {
   width: 215px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

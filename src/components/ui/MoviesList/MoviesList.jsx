@@ -1,4 +1,4 @@
-import { Stack } from '@mui/material';
+import { Pagination, Stack } from '@mui/material';
 import React from 'react';
 
 import MovieCard from '../MovieCard/MovieCard';
@@ -10,6 +10,18 @@ const MoviesList = ({ movies, totalPages, page, setPage }) => {
         {movies.map((item) => (
           <MovieCard key={item.kinopoiskId} movie={item} />
         ))}
+      </Stack>
+      <Stack
+        alignItems="center"
+        sx={{
+          marginBlock: '10px',
+        }}
+      >
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={(event, value) => setPage(value)}
+        />
       </Stack>
     </>
   );
