@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { TOP_LISTS } from '../constanst';
@@ -8,7 +7,7 @@ import {
 } from '../services/kinopoiskApi';
 
 const useMoviesQuery = () => {
-  const { countries, genreId, order, type, year, page } = useSelector(
+  const { countries, order, year, page } = useSelector(
     (state) => state.currentQuery,
   );
 
@@ -23,7 +22,7 @@ const useMoviesQuery = () => {
   });
 
   const responseFilms = useGetFilmsQuery({
-    genre: '1',
+    genres: '1',
     type: 'FILM',
     countries,
     order,
@@ -32,7 +31,7 @@ const useMoviesQuery = () => {
   });
 
   const responseSerials = useGetFilmsQuery({
-    genre: '1',
+    genres: '1',
     type: 'TV_SERIES',
     countries,
     order,
@@ -41,7 +40,7 @@ const useMoviesQuery = () => {
   });
 
   const responseCartoons = useGetFilmsQuery({
-    genre: '18',
+    genres: '18',
     type: 'FILM',
     countries,
     order,
