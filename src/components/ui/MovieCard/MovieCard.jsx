@@ -14,8 +14,8 @@ const MovieCard = ({ movie }) => {
           loading="lazy"
           className="img"
         />
-        <Link>{movie.nameRu ? movie.nameRu : movie.nameEn}</Link>
       </RouterLink>
+      <Link>{movie.nameRu ? movie.nameRu : movie.nameEn}</Link>
       <Stack>
         {movie.ratingKinopoisk && (
           <Tooltip title={`${movie.ratingKinopoisk} / 10`}>

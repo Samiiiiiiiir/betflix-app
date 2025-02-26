@@ -7,6 +7,7 @@ import { TOP_LISTS } from '../../../constanst';
 import { useGetFilmsTopQuery } from '../../../services/kinopoiskApi';
 import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
 import MoviesList from '../../ui/MoviesList/MoviesList';
+import MoviesListSkeleton from '../../ui/MoviesListSkeleton/MoviesListSkeleton';
 
 const MoviesListTop = () => {
   const location = useLocation();
@@ -15,7 +16,7 @@ const MoviesListTop = () => {
 
   const movieType = TOP_LISTS.find((item) => item.url === location.pathname);
 
-  const { data, error, isLoading, isSuccess } = useGetFilmsTopQuery({
+  const { data, error, isLoading, isFetching } = useGetFilmsTopQuery({
     type: movieType.value,
     page,
   });
@@ -24,7 +25,7 @@ const MoviesListTop = () => {
     setPage(1);
   }, [location]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading || isFetching) return <MoviesListSkeleton />;
 
   if (error) return <ErrorMessage />;
 
