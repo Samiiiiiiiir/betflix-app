@@ -5,10 +5,8 @@ import { Link as RouterLink } from 'react-router';
 import './movieCard.css';
 
 const MovieCard = ({ movie }) => {
-  console.log(movie);
-
   return (
-    <Stack className="card">
+    <Stack className="card" gap="10px">
       <RouterLink to={`/movie/${movie.kinopoiskId}`}>
         <img
           src={movie.posterUrlPreview}
@@ -19,16 +17,18 @@ const MovieCard = ({ movie }) => {
         <Link>{movie.nameRu ? movie.nameRu : movie.nameEn}</Link>
       </RouterLink>
       <Stack>
-        <Tooltip title={`${movie.ratingKinopoisk} / 10`}>
-          <Box>
-            <Rating
-              name="read-only"
-              value={movie.ratingKinopoisk / 2}
-              readOnly
-              precision={0.5}
-            />
-          </Box>
-        </Tooltip>
+        {movie.ratingKinopoisk && (
+          <Tooltip title={`${movie.ratingKinopoisk} / 10`}>
+            <Box>
+              <Rating
+                name="read-only"
+                value={movie.ratingKinopoisk / 2}
+                readOnly
+                precision={0.5}
+              />
+            </Box>
+          </Tooltip>
+        )}
       </Stack>
     </Stack>
   );

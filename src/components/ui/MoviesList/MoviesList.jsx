@@ -21,6 +21,7 @@ const MoviesList = ({ movies, totalPages, page, setPage }) => {
           count={totalPages}
           page={page}
           onChange={(event, value) => setPage(value)}
+          shape="rounded"
         />
       </Stack>
     </>
