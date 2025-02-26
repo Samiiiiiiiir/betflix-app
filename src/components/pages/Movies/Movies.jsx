@@ -8,6 +8,7 @@ import { Link as RouterLink } from 'react-router';
 import Slider from 'react-slick';
 
 import useMoviesQuery from '../../../hooks/useMoviesQuery';
+import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
 
 export const Movies = () => {
   var settings = {
@@ -16,7 +17,7 @@ export const Movies = () => {
     slidesToShow: 5,
     slidesToScroll: 2,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 5000,
   };
 
   const {
@@ -31,7 +32,7 @@ export const Movies = () => {
 
   if (isLoading) return <div>Loading...</div>;
 
-  if (hasError) return <div>Something went wrong</div>;
+  if (hasError) return <ErrorMessage />;
 
   const serializeDataForCarousel = (data) => {
     return data.map((item) => {
