@@ -9,6 +9,7 @@ import { useGetFilmsQuery } from '../../../services/kinopoiskApi';
 import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
 import MoviesList from '../../ui/MoviesList/MoviesList';
 import MoviesListSkeleton from '../../ui/MoviesListSkeleton/MoviesListSkeleton';
+import SelectMovies from '../../ui/SelectMovies/SelectMovies';
 
 const MoviesListMain = () => {
   const location = useLocation();
@@ -52,6 +53,7 @@ const MoviesListMain = () => {
         </Button>
         <Typography variant="h6">{type.title}</Typography>
       </Stack>
+      <SelectMovies />
       <MoviesList
         movies={data.items}
         totalPages={data.totalPages}

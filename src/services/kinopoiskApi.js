@@ -2,6 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const kinopoiskApiKey = import.meta.env.VITE_KINOPOISK_KEY;
 
+const excludeGenres = [25, 29, 30, 32];
+
 export const kinopoiskApi = createApi({
   reducerPath: 'kinopoiskApi',
   baseQuery: fetchBaseQuery({
@@ -16,6 +18,7 @@ export const kinopoiskApi = createApi({
       query: ({ type, page }) =>
         `/v2.2/films/collections?type=${type}&page=${page}`,
     }),
+
     getFilms: builder.query({
       query: ({
         countries = '',
@@ -26,7 +29,21 @@ export const kinopoiskApi = createApi({
       }) =>
         `/v2.2/films?genres=${genres}&countries=${countries}&order=${order}&type=${type}&page=${page}`,
     }),
+
+    getGenresAndCountries: builder.query({
+      query: () => '/v2.2/films/filters',
+      transformResponse: (response) => ({
+        ...response,
+        genres: response.genres.filter(
+          (item) => !excludeGenres.includes(item.id),
+        ),
+      }),
+    }),
   }),
 });
 
-export const { useGetFilmsTopQuery, useGetFilmsQuery } = kinopoiskApi;
+export const {
+  useGetFilmsTopQuery,
+  useGetFilmsQuery,
+  useGetGenresAndCountriesQuery,
+} = kinopoiskApi;
