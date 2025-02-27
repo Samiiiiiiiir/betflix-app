@@ -27,6 +27,11 @@ const SelectMovies = () => {
     },
   ];
 
+  const yearsList = new Array(60).fill(null).map((_, index) => ({
+    title: new Date().getFullYear() - index,
+    value: new Date().getFullYear() - index,
+  }));
+
   const handleChange = (e) => {
     console.log(e);
   };
@@ -77,10 +82,12 @@ const SelectMovies = () => {
 
       <FormControl fullWidth size="small">
         <InputLabel>Год</InputLabel>
-        <Select label="Год" onChange={handleChange}>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+        <Select value={1999} label="Год" onChange={handleChange}>
+          {yearsList.map((item) => (
+            <MenuItem key={item.value} value={item.value}>
+              {item.title}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
 
