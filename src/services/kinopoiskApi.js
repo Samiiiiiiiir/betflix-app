@@ -18,8 +18,8 @@ export const kinopoiskApi = createApi({
     }),
     getFilms: builder.query({
       query: ({
-        countries,
-        genres,
+        countries = '',
+        genres = '',
         order = 'RATING',
         type = 'ALL',
         page = 1,
