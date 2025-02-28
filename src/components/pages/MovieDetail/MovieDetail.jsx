@@ -1,14 +1,15 @@
-import { CircularProgress, Stack } from '@mui/material';
+import { ArrowBack } from '@mui/icons-material';
+import { Button, CircularProgress, Stack, Typography } from '@mui/material';
+import Grid from '@mui/material/Grid2';
 import React from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 import useMovieDetails from '../../../hooks/useMovieDetails';
 import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
 
-import './movieDetails.css';
-
 export const MovieDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const {
     filmData,
@@ -30,52 +31,83 @@ export const MovieDetail = () => {
   if (errorStatus) return <ErrorMessage />;
 
   return (
-    <>
-      <div className="movie-detail__wrapper">
-        <div className="movie-details__item movie-details__item--poster">
-          <img
-            src={filmData.posterUrlPreview}
-            alt={filmData.nameRu}
-            // width="100%"
-            // height="410"
-          />
-        </div>
-        <div className="movie-details__item movie-details__inner">
-          <div className="movie-details__inner-column">
-            <span>Год</span>
-            <span>Страна</span>
-            <span>Жанр</span>
-            <span>Режиссер</span>
-            <span>Длительность</span>
-          </div>
-          <div className="movie-details__inner-column">
-            <span>{filmData.year}</span>
-            <span>
-              {filmData.countries.reduce((acc, item, index) => {
-                if (index != filmData.countries.length - 1) {
-                  return acc + item.country + ', ';
-                }
-                return acc + item.country;
-              }, '')}
-            </span>
-            <span>
-              {filmData.genres.reduce((acc, item, index) => {
-                if (index != filmData.genres.length - 1) {
-                  return acc + item.genre + ', ';
-                }
-                return acc + item.genre;
-              }, '')}
-            </span>
-            <span>Режиссер</span>
-            <span>{filmData.filmLength} минут</span>
-          </div>
-        </div>
-        <div className="movie-details__item">Оценки</div>
-        <div className="movie-details__item movie-details__item--large">
-          <span></span> Описание:
-          <p>{filmData.description ? filmData.description : 'Нет описания'}</p>
-        </div>
-      </div>
-    </>
+    <Grid
+      container
+      spacing={2}
+      sx={{
+        paddingBlock: '20px',
+      }}
+    >
+      <Grid item size={4}>
+        <img
+          src={filmData.posterUrlPreview}
+          alt={filmData.nameRu}
+          width="100%"
+          loading="lazy"
+        />
+      </Grid>
+      <Grid item size={6}>
+        <Grid
+          container
+          sx={{
+            alignItems: 'center',
+            paddingBlock: '8px',
+          }}
+        >
+          <Grid size={4}>
+            <Button
+              startIcon={<ArrowBack />}
+              size="medium"
+              onClick={() => navigate(-1)}
+            >
+              Назад
+            </Button>
+          </Grid>
+          <Grid size={8}>
+            <Typography variant="h5">{filmData.nameRu}</Typography>{' '}
+          </Grid>
+        </Grid>
+        <Grid container rowSpacing={2}>
+          <Grid size={6}>Год</Grid>
+          <Grid size={6}>{filmData.year}</Grid>
+          <Grid size={6}>Страна</Grid>
+          <Grid size={6}>
+            {filmData.countries
+              .reduce((acc, { country }) => acc + country + ', ', '')
+              .slice(0, -2)}
+          </Grid>
+          <Grid size={6}>Жанр</Grid>
+          <Grid size={6}>
+            {filmData.genres
+              .reduce((acc, { genre }) => acc + genre + ', ', '')
+              .slice(0, -2)}
+          </Grid>
+          <Grid size={6}>Режиссеры</Grid>
+          <Grid size={6}>
+            {staffData
+              .filter((item) => item.professionText == 'Режиссеры')
+              .reduce((acc, { nameRu }) => acc + nameRu + ', ', '')
+              .slice(0, -2)}
+          </Grid>
+          <Grid size={6}>Длительность</Grid>
+          <Grid size={6}>
+            {filmData.filmLength
+              ? `${filmData.filmLength} минут`
+              : 'Нет данных'}
+          </Grid>
+          <Grid size={12}>
+            <Typography gutterBottom>Описание</Typography>
+            <Typography>
+              {filmData.description
+                ? filmData.description
+                : 'Описание отсутствует'}
+            </Typography>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item size={2}>
+        Actors
+      </Grid>
+    </Grid>
   );
 };
