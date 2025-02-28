@@ -10,13 +10,13 @@ const initialState = {
   keyword: '',
 };
 
-/* export */
-
 const searchQuerySlice = createSlice({
   name: 'searchQuery',
   initialState,
   reducers: {
-    setSearchQuery: (state, action) => {},
+    setSearchQuery: (state, action) => {
+      state.keyword = action.payload;
+    },
   },
 });
 

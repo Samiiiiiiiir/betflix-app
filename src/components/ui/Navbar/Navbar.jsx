@@ -13,6 +13,7 @@ import {
   ListItemIcon,
   ListItemText,
   Slide,
+  Stack,
   Toolbar,
   Typography,
   useScrollTrigger,
@@ -21,6 +22,7 @@ import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router';
 
 import { iconComponents, MOVIE_LISTS, TOP_LISTS } from '../../../constanst';
+import Search from '../Search/Search';
 
 const Icon = ({ iconName }) => {
   const IconComponent = iconComponents[iconName];
@@ -46,14 +48,22 @@ export const Navbar = () => {
             <IconButton color="inherit" onClick={handleDrawerToggle}>
               <MenuIcon />
             </IconButton>
-            <Typography
-              component={RouterLink}
-              to="/"
-              variant="h5"
-              style={{ color: '#fff', textDecoration: 'none' }}
+            <Stack
+              flexDirection="row"
+              alignItems="center"
+              justifyContent="space-between"
+              width="100%"
             >
-              betflix
-            </Typography>
+              <Typography
+                component={RouterLink}
+                to="/"
+                variant="h5"
+                style={{ color: '#fff', textDecoration: 'none' }}
+              >
+                betflix
+              </Typography>
+              <Search />
+            </Stack>
             <Drawer open={isOpen} onClose={handleDrawerToggle}>
               <Box sx={{ width: 280 }} onClick={handleDrawerToggle}>
                 <List>

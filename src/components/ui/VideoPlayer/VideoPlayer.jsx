@@ -22,7 +22,6 @@ const VideoPlayer = () => {
       setScriptHtml(data.match(/<iframe.*<\/iframe>/gm)[1]);
     }
     get();
-    console.log('hi from use effect');
   }, [pathname]);
 
   return (

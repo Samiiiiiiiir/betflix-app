@@ -66,8 +66,6 @@ export const Movies = () => {
 
   const serializeDataForCarousel = (data) => {
     return data.map((item) => {
-      console.log(item);
-
       return (
         <div key={item.kinopoiskId}>
           <RouterLink to={`/movies/${item.kinopoiskId}`}>
