@@ -8,8 +8,8 @@ import { MOVIE_LISTS } from '../../../constanst';
 import { useGetFilmsQuery } from '../../../services/kinopoiskApi';
 import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
 import MoviesList from '../../ui/MoviesList/MoviesList';
-import MoviesListSkeleton from '../../ui/MoviesListSkeleton/MoviesListSkeleton';
 import SelectMovies from '../../ui/SelectMovies/SelectMovies';
+import MoviesListMainSkeleton from './MoviesListMainSkeleton';
 
 const MoviesListMain = () => {
   const location = useLocation();
@@ -36,7 +36,7 @@ const MoviesListMain = () => {
     page,
   });
 
-  if (isLoading || isFetching) return <MoviesListSkeleton />;
+  if (isLoading || isFetching) return <MoviesListMainSkeleton />;
 
   if (isError) return <ErrorMessage />;
 

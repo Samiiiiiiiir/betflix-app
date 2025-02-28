@@ -1,7 +1,7 @@
 import { Box, Skeleton, Stack } from '@mui/material';
 import React from 'react';
 
-const MoviesListSkeleton = () => {
+const MoviesListMainSkeleton = () => {
   return (
     <Box mt={2} mb={2}>
       <Stack
@@ -20,6 +20,44 @@ const MoviesListSkeleton = () => {
           animation="wave"
           variant="rectangular"
           width={100}
+          height={32}
+        />
+      </Stack>
+      <Stack
+        sx={{ flexDirection: { sm: 'column', md: 'row' } }}
+        width="100%"
+        direction="row"
+        justifyContent="space-between"
+        gap={2}
+      >
+        <Skeleton
+          animation="wave"
+          variant="rectangular"
+          style={{ flexGrow: 3 }}
+          height={32}
+        />
+        <Skeleton
+          animation="wave"
+          variant="rectangular"
+          style={{ flexGrow: 3 }}
+          height={32}
+        />
+        <Skeleton
+          animation="wave"
+          variant="rectangular"
+          style={{ flexGrow: 3 }}
+          height={32}
+        />
+        <Skeleton
+          animation="wave"
+          variant="rectangular"
+          style={{ flexGrow: 3 }}
+          height={32}
+        />
+        <Skeleton
+          animation="wave"
+          variant="rectangular"
+          style={{ flexGrow: 2 }}
           height={32}
         />
       </Stack>
@@ -59,4 +97,4 @@ const MoviesListSkeleton = () => {
   );
 };
 
-export default MoviesListSkeleton;
+export default MoviesListMainSkeleton;
