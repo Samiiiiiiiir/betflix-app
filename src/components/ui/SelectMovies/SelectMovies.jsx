@@ -10,7 +10,7 @@ import {
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectQuery } from '../../../features/currentQuerySlice';
+import { resetQuery, selectQuery } from '../../../features/currentQuerySlice';
 import { useGetGenresAndCountriesQuery } from '../../../services/kinopoiskApi';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
@@ -111,7 +111,9 @@ const SelectMovies = () => {
       </FormControl>
 
       <Box>
-        <Button variant="outlined">Сбросить</Button>
+        <Button variant="outlined" onClick={() => dispatch(resetQuery())}>
+          Сбросить
+        </Button>
       </Box>
     </Stack>
   );
