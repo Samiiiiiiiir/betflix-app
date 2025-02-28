@@ -9,6 +9,6 @@ Currently, two official plugins are available:
 
 https://www.youtube.com/watch?v=inReuj1yPjU&t=28s
 
-4:43:30
+5:41:50
 
 (на будущее добавить страницу в url с номером страницы. например /comics/3 чтоб можно было перейти сразу)
