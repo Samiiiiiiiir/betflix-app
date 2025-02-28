@@ -13,6 +13,7 @@ import { useNavigate, useParams } from 'react-router';
 import useMovieDetails from '../../../hooks/useMovieDetails';
 import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
 import MovieCard from '../../ui/MovieCard/MovieCard';
+import VideoPlayer from '../../ui/VideoPlayer/VideoPlayer';
 
 export const MovieDetail = () => {
   const { id } = useParams();
@@ -25,8 +26,6 @@ export const MovieDetail = () => {
     loadingStatus,
     errorStatus,
   } = useMovieDetails(id);
-
-  console.log(filmData, sequelsAndPrequeslsData, staffData);
 
   if (loadingStatus)
     return (
@@ -139,10 +138,15 @@ export const MovieDetail = () => {
               </Typography>
             ))}
         </Grid>
-        <Grid item size={12}>
-          <Typography variant="h5" textAlign="center">
-            Смотреть онлайн
-          </Typography>
+        <Grid
+          item
+          size={12}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+        >
+          <Typography variant="h5">Смотреть онлайн</Typography>
+          <VideoPlayer />
         </Grid>
       </Grid>
       <Stack>
