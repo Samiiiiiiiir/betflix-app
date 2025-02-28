@@ -25,9 +25,10 @@ export const kinopoiskApi = createApi({
         genres = '',
         order = 'RATING',
         type = 'ALL',
+        year = '',
         page = 1,
       }) =>
-        `/v2.2/films?genres=${genres}&countries=${countries}&order=${order}&type=${type}&page=${page}`,
+        `/v2.2/films?genres=${genres}&countries=${countries}&order=${order}&type=${type}&page=${page}&yearFrom=${year}&yearTo=${year}`,
     }),
 
     getGenresAndCountries: builder.query({

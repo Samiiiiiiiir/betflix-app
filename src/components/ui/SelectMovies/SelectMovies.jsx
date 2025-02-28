@@ -8,11 +8,18 @@ import {
   Stack,
 } from '@mui/material';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { selectQuery } from '../../../features/currentQuerySlice';
 import { useGetGenresAndCountriesQuery } from '../../../services/kinopoiskApi';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 const SelectMovies = () => {
+  const dispatch = useDispatch();
+  const { order, countries, genreId, year } = useSelector(
+    (state) => state.currentQuery,
+  );
+
   const { data, isLoading, isFetching, isError } =
     useGetGenresAndCountriesQuery();
 
@@ -32,10 +39,6 @@ const SelectMovies = () => {
     value: new Date().getFullYear() - index,
   }));
 
-  const handleChange = (e) => {
-    console.log(e);
-  };
-
   if (isLoading || isFetching) return <div>Loading...</div>;
 
   if (isError) return <ErrorMessage />;
@@ -49,7 +52,11 @@ const SelectMovies = () => {
     >
       <FormControl fullWidth size="small">
         <InputLabel>Сортировка</InputLabel>
-        <Select label="Сортировка" onChange={handleChange}>
+        <Select
+          value={order}
+          label="Сортировка"
+          onChange={(e) => dispatch(selectQuery({ order: e.target.value }))}
+        >
           {ordersList.map((item) => (
             <MenuItem key={item.value} value={item.value}>
               {item.title}
@@ -60,7 +67,11 @@ const SelectMovies = () => {
 
       <FormControl fullWidth size="small">
         <InputLabel>Страна</InputLabel>
-        <Select label="Страна" onChange={handleChange}>
+        <Select
+          value={countries}
+          label="Страна"
+          onChange={(e) => dispatch(selectQuery({ countries: e.target.value }))}
+        >
           {data.countries.map((item) => (
             <MenuItem key={item.id} value={item.id}>
               {item.country}
@@ -71,7 +82,11 @@ const SelectMovies = () => {
 
       <FormControl fullWidth size="small">
         <InputLabel>Жанр</InputLabel>
-        <Select label="Жанр" onChange={handleChange}>
+        <Select
+          label="Жанр"
+          value={genreId}
+          onChange={(e) => dispatch(selectQuery({ genreId: e.target.value }))}
+        >
           {data.genres.map((item) => (
             <MenuItem key={item.id} value={item.id}>
               {item.genre}
@@ -82,7 +97,11 @@ const SelectMovies = () => {
 
       <FormControl fullWidth size="small">
         <InputLabel>Год</InputLabel>
-        <Select value={1999} label="Год" onChange={handleChange}>
+        <Select
+          value={year}
+          label="Год"
+          onChange={(e) => dispatch(selectQuery({ year: e.target.value }))}
+        >
           {yearsList.map((item) => (
             <MenuItem key={item.value} value={item.value}>
               {item.title}
