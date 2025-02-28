@@ -34,7 +34,7 @@ export default function useMovieDetails(id) {
     isStaffLoading ||
     isStaffFetching;
 
-  const errorStatus = isError || isSequelsAndPrequelsError || isStaffError;
+  const errorStatus = isError || isStaffError; // || isSequelsAndPrequelsError
 
   return {
     loadingStatus,

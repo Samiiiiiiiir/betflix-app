@@ -1,3 +1,4 @@
+import { CircularProgress, Stack } from '@mui/material';
 import React from 'react';
 import { useParams } from 'react-router';
 
@@ -17,7 +18,12 @@ export const MovieDetail = () => {
 
   console.log(filmData, sequelsAndPrequeslsData, staffData);
 
-  if (loadingStatus) return <div>Loading...</div>;
+  if (loadingStatus)
+    return (
+      <Stack justifyContent="center" margin="auto">
+        <CircularProgress size="8rem" />
+      </Stack>
+    );
 
   if (errorStatus) return <ErrorMessage />;
 
