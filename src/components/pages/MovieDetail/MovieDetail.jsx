@@ -12,6 +12,7 @@ import { useNavigate, useParams } from 'react-router';
 
 import useMovieDetails from '../../../hooks/useMovieDetails';
 import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
+import MovieCard from '../../ui/MovieCard/MovieCard';
 
 export const MovieDetail = () => {
   const { id } = useParams();
@@ -138,7 +139,28 @@ export const MovieDetail = () => {
               </Typography>
             ))}
         </Grid>
+        <Grid item size={12}>
+          <Typography variant="h5" textAlign="center">
+            Смотреть онлайн
+          </Typography>
+        </Grid>
       </Grid>
+      <Stack>
+        <Typography variant="h5" textAlign="center" gutterBottom>
+          Сиквелы и приквелы
+        </Typography>
+        <Stack direction="row" flexWrap="wrap" gap={2} justifyContent="center">
+          {!sequelsAndPrequeslsData && (
+            <Typography textAlign="center" gutterBottom>
+              (Тут пусто)
+            </Typography>
+          )}
+          {sequelsAndPrequeslsData &&
+            sequelsAndPrequeslsData.map((item) => (
+              <MovieCard key={item.filmId} movie={item} />
+            ))}
+        </Stack>
+      </Stack>
     </>
   );
 };
