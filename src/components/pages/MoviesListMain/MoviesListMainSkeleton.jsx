@@ -25,10 +25,12 @@ const MoviesListMainSkeleton = () => {
       </Stack>
       <Stack
         sx={{ flexDirection: { sm: 'column', md: 'row' } }}
+        gap="12px"
+        mb={2}
+        mt={2}
         width="100%"
         direction="row"
         justifyContent="space-between"
-        gap={2}
       >
         <Skeleton
           animation="wave"
