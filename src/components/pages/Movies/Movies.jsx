@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import { Link, Stack } from '@mui/material';
-import { Link as RouterLink } from 'react-router';
+import { Link as RouterLink, useLocation } from 'react-router';
 import Slider from 'react-slick';
 
 import useMoviesQuery from '../../../hooks/useMoviesQuery';
@@ -53,6 +53,12 @@ export const Movies = () => {
     responseSerials,
     responseCartoons,
   } = useMoviesQuery();
+
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname]);
 
   if (isLoading) return <MoviesSkeleton />;
 

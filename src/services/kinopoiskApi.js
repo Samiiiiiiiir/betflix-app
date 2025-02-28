@@ -40,6 +40,20 @@ export const kinopoiskApi = createApi({
         ),
       }),
     }),
+
+    getOneFilm: builder.query({
+      query: (id) => `/v2.2/films/${id}`,
+    }),
+
+    getSequelsAndPrequels: builder.query({
+      query: (id) => `/v2.1/films/${id}/sequels_and_prequels`,
+      transformResponse: (response) =>
+        response.map((item) => ({ ...item, kinopoiskId: item.filmId })),
+    }),
+
+    getStaff: builder.query({
+      query: (id) => `/v1/staff?filmId=${id}`,
+    }),
   }),
 });
 
@@ -47,4 +61,7 @@ export const {
   useGetFilmsTopQuery,
   useGetFilmsQuery,
   useGetGenresAndCountriesQuery,
+  useGetOneFilmQuery,
+  useGetSequelsAndPrequelsQuery,
+  useGetStaffQuery,
 } = kinopoiskApi;

@@ -1,5 +1,6 @@
 import { Stack, Typography } from '@mui/material';
 import React from 'react';
+import { Link as RouterLink } from 'react-router';
 
 export const Footer = () => {
   return (
@@ -24,7 +25,13 @@ export const Footer = () => {
         Данный сайт создан исключительно в обучающих целях. <br />
         Все права принадлежат правообладателям.
       </Typography>
-      <Typography variant="h5" color="primary.main">
+      <Typography
+        component={RouterLink}
+        to="/"
+        variant="h5"
+        color="primary.main"
+        style={{ textDecoration: 'none' }}
+      >
         betflix
       </Typography>
     </Stack>

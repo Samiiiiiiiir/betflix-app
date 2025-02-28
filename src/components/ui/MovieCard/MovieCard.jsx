@@ -7,7 +7,7 @@ import './movieCard.css';
 const MovieCard = ({ movie }) => {
   return (
     <Stack className="card" gap="10px">
-      <RouterLink to={`/movie/${movie.kinopoiskId}`}>
+      <RouterLink to={`/movies/${movie.kinopoiskId}`}>
         <img
           src={movie.posterUrlPreview}
           alt={movie.nameRu}
