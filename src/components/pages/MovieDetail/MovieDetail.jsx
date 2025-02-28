@@ -46,7 +46,7 @@ export const MovieDetail = () => {
           paddingBlock: '20px',
         }}
       >
-        <Grid item size={4}>
+        <Grid item size={{ md: 4, sm: 12 }}>
           <img
             src={filmData.posterUrlPreview}
             alt={filmData.nameRu}
@@ -69,7 +69,7 @@ export const MovieDetail = () => {
             </Button>
           </ButtonGroup>
         </Grid>
-        <Grid item size={6}>
+        <Grid item size={{ md: 6, sm: 12 }}>
           <Grid
             container
             sx={{
@@ -128,7 +128,7 @@ export const MovieDetail = () => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item size={2}>
+        <Grid item size={{ md: 2, sm: 12 }}>
           <Typography variant="h6">В главных ролях</Typography>
           {staffData
             .filter((item) => item.professionText == 'Актеры')
