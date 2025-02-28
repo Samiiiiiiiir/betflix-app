@@ -9,7 +9,9 @@ const initialState = {
   page: 1,
 };
 
-export const currentQuerySlice = createSlice({
+/* export */
+
+const currentQuerySlice = createSlice({
   name: 'currentQuery',
   initialState,
   reducers: {
