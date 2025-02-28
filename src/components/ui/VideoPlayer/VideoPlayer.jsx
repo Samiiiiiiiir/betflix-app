@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 
 import './videoPlayer.css';
 
+import { useLocation } from 'react-router';
+
 const VideoPlayer = () => {
+  const { pathname } = useLocation();
+
   const [scriptHtml, setScriptHtml] = useState('');
 
   useEffect(() => {
@@ -13,12 +17,13 @@ const VideoPlayer = () => {
           dataUrl,
       );
       const data = await req.text();
-      console.log(data);
-      console.log(data.match(/<iframe.*<\/iframe>/gm)[1]);
+      /*    console.log(data);
+      console.log(data.match(/<iframe.*<\/iframe>/gm)[1]); */
       setScriptHtml(data.match(/<iframe.*<\/iframe>/gm)[1]);
     }
     get();
-  }, []);
+    console.log('hi from use effect');
+  }, [pathname]);
 
   return (
     <div

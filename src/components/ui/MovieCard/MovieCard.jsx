@@ -7,15 +7,15 @@ import './movieCard.css';
 const MovieCard = ({ movie }) => {
   return (
     <Stack className="card" gap="10px">
-      <RouterLink to={`/movies/${movie.kinopoiskId}`}>
+      <Link component={RouterLink} to={`/movies/${movie.kinopoiskId}`}>
         <img
           src={movie.posterUrlPreview}
           alt={movie.nameRu}
           loading="lazy"
           className="img"
         />
-      </RouterLink>
-      <Link>{movie.nameRu ? movie.nameRu : movie.nameEn}</Link>
+        <Typography>{movie.nameRu ? movie.nameRu : movie.nameEn}</Typography>
+      </Link>
       <Stack>
         {movie.ratingKinopoisk && (
           <Tooltip title={`${movie.ratingKinopoisk} / 10`}>
