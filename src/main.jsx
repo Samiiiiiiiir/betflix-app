@@ -5,10 +5,13 @@ import { Provider } from 'react-redux';
 
 import { store } from './app/store';
 import App from './components/App';
+import ToggleColorTheme from './context/ToggleColorTheme';
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <CssBaseline />
-    <App />
+    <ToggleColorTheme>
+      <CssBaseline />
+      <App />
+    </ToggleColorTheme>
   </Provider>,
 );
