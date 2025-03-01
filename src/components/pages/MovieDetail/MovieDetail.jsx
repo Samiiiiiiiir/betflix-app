@@ -136,7 +136,7 @@ export const MovieDetail = () => {
             .filter((item) => item.professionText == 'Актеры')
             .slice(0, 9)
             .map(({ nameRu, staffId }) => (
-              // <div key={nameRu}>
+              <div key={nameRu}>
                 <Typography
                   component={Link}
                   to={`/actor/${staffId}`}
