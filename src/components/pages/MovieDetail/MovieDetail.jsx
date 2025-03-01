@@ -136,18 +136,19 @@ export const MovieDetail = () => {
             .filter((item) => item.professionText == 'Актеры')
             .slice(0, 9)
             .map(({ nameRu, staffId }) => (
-              <Typography
-                component={Link}
-                to={`/actor/${staffId}`}
-                key={nameRu}
-                style={{
-                  color: 'inherit',
-                  textDecoration: 'none',
-                  marginBottom: '8px',
-                }}
-              >
-                {nameRu}
-              </Typography>
+              // <div key={nameRu}>
+                <Typography
+                  component={Link}
+                  to={`/actor/${staffId}`}
+                  style={{
+                    color: 'inherit',
+                    textDecoration: 'none',
+                    marginBottom: '8px',
+                  }}
+                >
+                  {nameRu}
+                </Typography>
+              </div>
             ))}
         </Grid>
         <Grid

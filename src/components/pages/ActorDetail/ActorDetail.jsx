@@ -3,12 +3,13 @@ import {
   Box,
   Button,
   CircularProgress,
+  Link,
   Stack,
   Typography,
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import React from 'react';
-import { Link, useNavigate, useParams } from 'react-router';
+import { Link as RouterLink, useNavigate, useParams } from 'react-router';
 
 import { useGetActorDetailsQuery } from '../../../services/kinopoiskApi';
 import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
@@ -47,10 +48,10 @@ export const ActorDetail = () => {
           paddingBlock: '20px',
         }}
       >
-        <Grid item size={4}>
+        <Grid item size={{ md: 4, sm: 12 }}>
           <img src={actor.posterUrl} alt={actor.nameRu} width="100%" />
         </Grid>
-        <Grid item size={8}>
+        <Grid item size={{ md: 8, sm: 12 }}>
           <Stack direction="row" gap={2} alignItems="center" mb="4px">
             <Button
               startIcon={<ArrowBack />}
@@ -102,24 +103,23 @@ export const ActorDetail = () => {
       <Typography variant="h5" gutterBottom>
         Фильмы
       </Typography>
-      <ul style={{ listStyleType: 'none' }}>
+      <Stack>
         {actor.films.map((item, i) => (
-          <li key={item.filmId}>
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              alignItems="center"
-              mb={1}
-            >
-              <div>{i + 1}.</div>
-              <Link to={`/movies/${item.filmId}`}>
-                {item.nameRu ? item.nameRu : 'Неизвестно'}
-              </Link>
-              <div>{item.rating ? item.rating : '-'}</div>
-            </Stack>
-          </li>
+          <Stack
+            key={item.filmId}
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+            mb={1}
+          >
+            <div>{i + 1}.</div>
+            <Link component={RouterLink} to={`/movies/${item.filmId}`}>
+              {item.nameRu ? item.nameRu : 'Неизвестно'}
+            </Link>
+            <div>{item.rating ? item.rating : '-'}</div>
+          </Stack>
         ))}
-      </ul>
+      </Stack>
     </>
   );
 };
