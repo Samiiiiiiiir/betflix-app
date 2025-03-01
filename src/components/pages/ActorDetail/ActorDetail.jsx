@@ -104,21 +104,26 @@ export const ActorDetail = () => {
         Фильмы
       </Typography>
       <Stack>
-        {actor.films.map((item, i) => (
-          <Stack
-            key={item.filmId}
-            direction="row"
-            justifyContent="space-between"
-            alignItems="center"
-            mb={1}
-          >
-            <div>{i + 1}.</div>
-            <Link component={RouterLink} to={`/movies/${item.filmId}`}>
-              {item.nameRu ? item.nameRu : 'Неизвестно'}
-            </Link>
-            <div>{item.rating ? item.rating : '-'}</div>
-          </Stack>
-        ))}
+        {actor.films
+          .filter(
+            (item, index, self) =>
+              index == self.findIndex((el) => el.filmId == item.filmId),
+          )
+          .map((item, i) => (
+            <Stack
+              key={item.filmId}
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              mb={1}
+            >
+              <div>{i + 1}.</div>
+              <Link component={RouterLink} to={`/movies/${item.filmId}`}>
+                {item.nameRu ? item.nameRu : 'Неизвестно'}
+              </Link>
+              <div>{item.rating ? item.rating : '-'}</div>
+            </Stack>
+          ))}
       </Stack>
     </>
   );
