@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 import { setSearchQuery } from '../../../features/searchQuerySlice';
 import { useGetFilmsQuery } from '../../../services/kinopoiskApi';
@@ -19,6 +20,8 @@ const movieTypes = {
 
 const Search = () => {
   const [input, setInput] = useState('');
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -36,7 +39,7 @@ const Search = () => {
     };
   }, [input]);
 
-  const { data, isLoading, isFetching } = useGetFilmsQuery({
+  const { data, isFetching } = useGetFilmsQuery({
     countries,
     genreId,
     order,
@@ -48,16 +51,15 @@ const Search = () => {
   return (
     <Autocomplete
       sx={{ width: '300px' }}
-      style={{ backgroundColor: '#fff' }}
+      style={{
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        borderRadius: '10px',
+      }}
       freeSolo
-      options={
-        data
-          ? data.items.map(
-              (option) =>
-                `${option.nameRu} - ${movieTypes[option.type]} (${option.year})`,
-            )
-          : []
+      getOptionLabel={(option) =>
+        `${option.nameRu} - ${movieTypes[option.type]} (${option.year})`
       }
+      options={data ? data.items : []}
       renderInput={(params) => (
         <TextField
           {...params}
@@ -73,6 +75,11 @@ const Search = () => {
       )}
       onInputChange={(_, value) => {
         setInput(value);
+      }}
+      onChange={(_, value) => {
+        if (value) {
+          navigate(`/movies/${value.kinopoiskId}`);
+        }
       }}
     />
   );
