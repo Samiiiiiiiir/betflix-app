@@ -11,6 +11,8 @@ https://www.youtube.com/watch?v=inReuj1yPjU&t=28s
 
 api - https://kinopoiskapiunofficial.tech/profile
 
-7:04:30
+В public добавить \_redirects
+
+Внутри: /\* /index.html 200
 
 (на будущее добавить страницу в url с номером страницы. например /comics/3 чтоб можно было перейти сразу)
