@@ -9,6 +9,8 @@ Currently, two official plugins are available:
 
 https://www.youtube.com/watch?v=inReuj1yPjU&t=28s
 
-6:35:00
+api - https://kinopoiskapiunofficial.tech/profile
+
+7:04:30
 
 (на будущее добавить страницу в url с номером страницы. например /comics/3 чтоб можно было перейти сразу)

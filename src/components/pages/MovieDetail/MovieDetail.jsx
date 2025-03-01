@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import React from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { Link, useNavigate, useParams } from 'react-router';
 
 import useMovieDetails from '../../../hooks/useMovieDetails';
 import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
@@ -17,6 +17,7 @@ import VideoPlayer from '../../ui/VideoPlayer/VideoPlayer';
 
 export const MovieDetail = () => {
   const { id } = useParams();
+
   const navigate = useNavigate();
 
   const {
@@ -35,6 +36,8 @@ export const MovieDetail = () => {
     );
 
   if (errorStatus) return <ErrorMessage />;
+
+  console.log(staffData);
 
   return (
     <>
@@ -132,8 +135,17 @@ export const MovieDetail = () => {
           {staffData
             .filter((item) => item.professionText == 'Актеры')
             .slice(0, 9)
-            .map(({ nameRu }) => (
-              <Typography key={nameRu} gutterBottom>
+            .map(({ nameRu, staffId }) => (
+              <Typography
+                component={Link}
+                to={`/actor/${staffId}`}
+                key={nameRu}
+                style={{
+                  color: 'inherit',
+                  textDecoration: 'none',
+                  marginBottom: '8px',
+                }}
+              >
                 {nameRu}
               </Typography>
             ))}
