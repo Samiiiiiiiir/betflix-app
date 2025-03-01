@@ -3,12 +3,13 @@ import {
   Button,
   ButtonGroup,
   CircularProgress,
+  Link,
   Stack,
   Typography,
 } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import React from 'react';
-import { Link, useNavigate, useParams } from 'react-router';
+import { Link as RouterLink, useNavigate, useParams } from 'react-router';
 
 import useMovieDetails from '../../../hooks/useMovieDetails';
 import ErrorMessage from '../../ui/ErrorMessage/ErrorMessage';
@@ -137,17 +138,15 @@ export const MovieDetail = () => {
             .slice(0, 9)
             .map(({ nameRu, staffId }) => (
               <div key={nameRu}>
-                <Typography
-                  component={Link}
+                <Link
+                  component={RouterLink}
                   to={`/actor/${staffId}`}
                   style={{
-                    color: 'inherit',
-                    textDecoration: 'none',
                     marginBottom: '8px',
                   }}
                 >
                   {nameRu}
-                </Typography>
+                </Link>
               </div>
             ))}
         </Grid>
