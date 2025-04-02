@@ -16,3 +16,5 @@ api - https://kinopoiskapiunofficial.tech/profile
 Внутри: /\* /index.html 200
 
 (на будущее добавить страницу в url с номером страницы. например /comics/3 чтоб можно было перейти сразу)
+
+перейти на yarn и typescript

@@ -28,24 +28,20 @@ function App() {
           <Route path="/" element={<Movies />} />
           <Route path="/movies/:id" element={<MovieDetail />} />
           <Route path="/actor/:id" element={<ActorDetail />} />
-          {TOP_LISTS.map((item) => {
-            return (
-              <Route
-                key={item.title}
-                path={item.url}
-                element={<MoviesListTop />}
-              />
-            );
-          })}
-          {MOVIE_LISTS.map((item) => {
-            return (
-              <Route
-                key={item.title}
-                path={item.url}
-                element={<MoviesListMain />}
-              />
-            );
-          })}
+          {TOP_LISTS.map((item) => (
+            <Route
+              key={item.title}
+              path={item.url}
+              element={<MoviesListTop />}
+            />
+          ))}
+          {MOVIE_LISTS.map((item) => (
+            <Route
+              key={item.title}
+              path={item.url}
+              element={<MoviesListMain />}
+            />
+          ))}
         </Routes>
         <Footer />
       </Container>
